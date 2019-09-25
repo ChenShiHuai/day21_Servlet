@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>行颜色间隔并高亮</title>
+    <link rel="stylesheet" href="table.css" />
+    <style type="text/css">
+        .one{
+            background:#99CCFF;
+        }
+        .two{
+            background:#FFFF99;
+        }
+        .over{
+            background-color:#FF0000;
+        }
+    </style>
+    <script type="text/javascript">
+        var name;//记录行的classname
+        /*设置行属性和行为*/
+        function setRows(){
+            //获取表格对象
+            var tabNode = document.getElementById("infoTab");
+            //获取行
+            var rowsNode = tabNode.rows;
+            //从第二行开始遍历(不算表头)
+            for(var i=1;i<rowsNode.length;i++){
+                if(i%2 == 1)
+                    rowsNode[i].className = "one";
+                else
+                    rowsNode[i].className = "two";
+
+                //设置完颜色，给行添加事件(行为)
+                rowsNode[i].onmouseover = function(){
+                    name = this.className;
+                    this.className = "over";//高亮
+                }
+                rowsNode[i].onmouseout = function(){
+                    this.className = name;//还原
+                }
+            }
+        }
+        //在加载完成后调用方法：
+        window.onload = function(){
+            setRows();
+        }
+    </script>
+</head>
+<body>
+<table id="infoTab">
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>地址</th>
+    </tr>
+    <tr>
+        <td>张三</td>
+        <td>24</td>
+        <td>上海</td>
+    </tr>
+    <tr>
+        <td>李四</td>
+        <td>21</td>
+        <td>北京</td>
+    </tr>
+    <tr>
+        <td>王五</td>
+        <td>34</td>
+        <td>天津</td>
+    </tr>
+    <tr>
+        <td>小明</td>
+        <td>27</td>
+        <td>石家庄</td>
+    </tr>
+    <tr>
+        <td>小红</td>
+        <td>24</td>
+        <td>黑龙江</td>
+    </tr>
+    <tr>
+        <td>小强</td>
+        <td>23</td>
+        <td>合肥</td>
+    </tr>
+    <tr>
+        <td>诗朗诵</td>
+        <td>35</td>
+        <td>杭州</td>
+    </tr>
+    <tr>
+        <td>贝尔</td>
+        <td>38</td>
+        <td>纽约</td>
+    </tr>
+</table>
+</body>
+</html>

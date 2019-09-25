@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <title>输入文本</title>
+</head>
+<body>
+<input type="button" value="点击获取浏览器信息" id="browser" onclick="test();">
+<script type="text/javascript">
+    //补充代码
+    var mozillaName="";
+    var btn=document.getElementById("browser");
+    function mozilla() {
+        var mozillaInf=navigator.userAgent.toLowerCase();
+        alert(mozillaInf);
+        if(mozillaInf.indexOf("msie")>=0){
+            mozillaName="IE";
+        }else if(mozillaInf.indexOf("firefox")>=0){
+
+            mozillaName="火狐";
+
+        }else if(mozillaInf.indexOf("chrome")>=0){
+
+            mozillaName="谷歌";
+        }
+    }
+    // btn.οnclick=function(){
+    //
+    // }
+    function test(){
+        mozilla();
+        alert("您使用的浏览器是"+mozillaName+"浏览器");
+    }
+</script>
+</body>
+</html>

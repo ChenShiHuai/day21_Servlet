@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业5</title>
+</head>
+<body>
+<input type="button" value="录入">
+<script type="text/javascript">
+    var inputs = document.getElementsByTagName("input");
+    var entry = inputs[0];
+    entry.onclick = entryFn;
+    function entryFn() {
+        //补充代码
+        var con = prompt("请输入员工姓名");
+        var i = 0;
+        var arr = new Array();
+        while (con !=="-1") {
+            arr[i] = con;
+            con = prompt("请输入员工姓名");
+            i++;
+        }
+        if (con === "-1") {
+            for (var a = 0; a < arr.length; a++) {
+                document.write("录入的第" + (a+1) + "个员工姓名是:" + arr[a]+"<br/>");
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>表单校验</title>
+    <style type="text/css">
+        table{
+            border:#006666 2px solid;
+            width:300px;
+            height:300px;
+            text-align:center;
+        }
+    </style>
+    <script type="text/javascript">
+        //用户名提示
+        function usermes(){
+            var userflag =false;
+            var userNode = document.getElementById("username");
+            var name = userNode.value;
+            /*
+            参数 attributes 是一个可选的字符串，包含属性 "g"、"i" 和 "m"，
+            分别用于指定全局匹配、不区分大小写的匹配和多行匹配。ECMAScript 标准化之前，不支持 m 属性。
+            如果 pattern 是正则表达式，而不是字符串，则必须省略该参数。
+             */
+            //定义正则表达式规则:有两种语法方法
+            var reg = new RegExp("^[a-z].{1,5}$","i");
+            //var reg = /^[a-z]{4}$/;
+            var usermesNode = document.getElementById("usermes");
+            //判断输入是否符合规则：
+            if(reg.test(name)){
+                usermesNode.innerHTML = "用户名可用".fontcolor("green");//<font color='green'>用户名可用</font>
+                flag = true;
+
+            }
+            else{
+                usermesNode.innerHTML = "用户名必须以字母开头且长度在2-6之间".fontcolor("red");
+                flag = false;
+            }
+            return flag;
+        }
+        //密码提示
+        function pswmes1(){
+            var psw1flag =false;
+            var pswNode = document.getElementById("psw1");
+            var name = pswNode.value;
+            //定义正则表达式规则:有两种语法方法
+            var reg = new RegExp("^.{2,10}$","i");
+            //var reg = /^[a-z]{4}$/;
+            var pswmesNode = document.getElementById("pswmes1");
+            //判断输入是否符合规则：
+            if(reg.test(name)){
+
+                //fontcolor() 方法用于按照指定的颜色来显示字符串。
+                //该方法返回加了<font>标签的字符串, 如下所示:
+                //<font color="colorvalue">string</font>
+
+                pswmesNode.innerHTML = "密码可用".fontcolor("green");
+                psw1flag = true;
+            }
+            else if(name==""){
+                pswmesNode.innerHTML = "密码不能为空".fontcolor("red");
+                psw1flag = false;
+            }
+            else{
+                pswmesNode.innerHTML = "密码长度必须为：2~10".fontcolor("red");
+                psw1flag = false;
+            }
+            return psw1flag;
+        }
+        function pswmes2(){
+            var psw2flag =false;
+            var psw1Node = document.getElementById("psw1");
+            var name1 = psw1Node.value;
+            var psw2Node = document.getElementById("psw2");
+            var name2 = psw2Node.value;
+
+            var pswmesNode = document.getElementById("pswmes2");
+            //判断输入是否符合规则：
+            if(name1==name2){
+                if(name2==""){
+                    pswmesNode.innerHTML = "密码不能为空".fontcolor("red");
+                    psw2flag = false;
+                }
+                else{
+                    pswmesNode.innerHTML = "输入一致".fontcolor("green");
+                    psw2flag = true;
+                }
+            }
+            else{
+                pswmesNode.innerHTML = "两次密码输入不一致".fontcolor("red");
+                psw2flag = false;
+            }
+            return psw2flag;
+        }
+        //提交校验
+        function checkForm(){
+            var formflag;
+            var psw1Node = document.getElementById("submes");
+            if(usermes()&&psw1mes()&&psw2mes()){
+                alert("提交成功");
+                formflag = true;
+            }
+            else{
+                alert("输入有误，无法提交");
+                formflag = false;
+            }
+            return formflag;
+        }
+    </script>
+</head>
+<body>
+<h2>新用户注册</h2>
+<form onsubmit="return checkForm()">
+    <table id="userTab">
+        <tr>
+            <td>用户名称：<input type="text" id ="username" onblur="usermes()"/></td>
+        </tr>
+        <tr>
+            <td id="usermes"></td>
+        </tr>
+        <tr>
+            <td>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" id ="psw1" onblur="pswmes1()"/></td>
+        </tr>
+        <tr>
+            <td id="pswmes1"></td>
+        </tr>
+        <tr>
+            <td>确认密码：<input type="password" id ="psw2" onblur="pswmes2()"/></td>
+        </tr>
+        <tr>
+            <td id="pswmes2"></td>
+        </tr>
+    </table>
+    <input type="submit" value="确认注册" style="font-size:16px"/>
+</form>
+</body>
+</html>
